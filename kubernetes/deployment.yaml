@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: get-started-java
-        image: us.icr.io/mathmaro/getstartedjava:latest
+        image: <REGISTRY>/<NAMESPACE>/getstartedjava:latest
         ports:
         - containerPort: 9080
         imagePullPolicy: Always
