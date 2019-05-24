@@ -5,7 +5,7 @@ Follow these instructions to deploy this application to a Kubernetes cluster and
 ## Download
 
 ```bash
-git clone https://github.com/IBM-Cloud/get-started-java
+git clone https://github.com/matheusmarodin/JWebCrawler
 cd get-started-java
 mvn clean install
 ```
@@ -21,12 +21,12 @@ mvn clean install
    ```sh
    docker build . -t <REGISTRY>/<NAMESPACE>/myapp:v1.0.0
    ```
-   Example: `docker build . -t registry.ng.bluemix.net/mynamespace/myapp:v1.0.0`
+   Example: `docker build . -t us.icr.io/mathmaro/getstartedjava:latest`
 
 4. Push the docker image to your Container Registry on IBM Cloud
 
    ```sh
-   docker push <REGISTRY>/<NAMESPACE>/myapp:v1.0.0
+   docker push <REGISTRY>/<NAMESPACE>/getstartedjava:latest
    ```
 
 ## Deploy
@@ -82,13 +82,13 @@ kubectl get pods -l app=get-started-java
 **Standard (Paid) Cluster:**
 
 1. Identify your LoadBalancer Ingress IP using `kubectl get service get-started-java`
-2. Access your application at t `http://<EXTERNAL-IP>:9080/GetStartedJava`
+2. Access your application at t `http://<EXTERNAL-IP>:9080/`
 
 **Free Cluster:**
 
 1. Identify your Worker Public IP using `ibmcloud cs workers YOUR_CLUSTER_NAME`
 2. Identify the Node Port using `kubectl describe service get-started-java`
-3. Access your application at `http://<WORKER-PUBLIC-IP>:<NODE-PORT>/GetStartedJava`
+3. Access your application at `http://<WORKER-PUBLIC-IP>:<NODE-PORT>/`
 
 
 ## Clean Up
