@@ -132,6 +132,6 @@ cloudant_url=https://123456789 ... bluemix.cloudant.com
 ```
 Restart the server.
 
-Refresh your browser view at http://localhost:9080/. Any names that you enter into the app will now get added to the database.
+Refresh your browser view at http://localhost:9080/.
 
-Your local app and the IBM Cloud app are sharing the database. Names you add from either app will appear in both when you refresh the browsers.
+Your local app and the IBM Cloud app are sharing the database.
