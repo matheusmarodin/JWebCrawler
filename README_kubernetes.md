@@ -19,7 +19,7 @@ mvn clean install
 3. Build and tag (`-t`)the docker image by running the command below replacing REGISTRY and NAMESPACE with he appropriate values.
 
    ```sh
-   docker build . -t <REGISTRY>/<NAMESPACE>/myapp:v1.0.0
+   docker build . -t <REGISTRY>/<NAMESPACE>/getstartedjava:latest
    ```
    Example: `docker build . -t us.icr.io/mathmaro/getstartedjava:latest`
 
