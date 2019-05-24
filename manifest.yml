@@ -1,7 +1,7 @@
 ---
 applications:
  - name: WebCrawler
-   host: JWebCrawler
+   random-route: true
    path: target/GetStartedJava.war
    memory: 256M
    instances: 1
