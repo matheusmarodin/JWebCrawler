@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>JWebCrawler</title>
+
+<!-- Bootstrap -->
+<link
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+	rel="stylesheet">
+<link href="styles.css" rel="stylesheet">
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="js/lib/jquery.i18n/jquery.i18n.js"></script>
+<script src="js/lib/jquery.i18n/jquery.i18n.messagestore.js"></script>
+<script src="js/lib/jquery.i18n/jquery.i18n.fallbacks.js"></script>
+<script src="js/lib/jquery.i18n/jquery.i18n.language.js"></script>
+<script src="js/lib/jquery.i18n/jquery.i18n.parser.js"></script>
+<script src="js/lib/jquery.i18n/jquery.i18n.emitter.js"></script>
+<script src="js/lib/jquery.i18n/jquery.i18n.emitter.bidi.js"></script>
+<script src="antixss.js" type="text/javascript"></script>
+
+<script>
+	$(document)
+			.ready(
+					function() {
+						$
+								.i18n()
+								.load(
+										{
+											en : {
+												"welcome" : "Welcome to JWebCrawler",
+												"name" : "name",
+												"what_is_your_name" : "Please insert URL?",
+												"hello" : "Hello $1",
+												"added_to_database" : "Hello $1, I've added you to the database!",
+												"database_contents" : "Database contents: ",
+
+												"insert_url" : "URL:",
+												"url" : "url",
+												"insert_depth" : "Depth:",
+												"depth" : "empty means no limit"
+											}
+										});
+						$('body').i18n();
+
+						//Placeholder
+						$('#user_name').attr("placeholder", $.i18n('name'));
+						$('#url').attr("placeholder", $.i18n('url'));
+						$('#depth').attr("placeholder", $.i18n('depth'));
+					});
+</script>
+
+</head>
+
+<body>	
+	<!-- modal Loader -->
+	<div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog"
+		aria-labelledby="mySmallModalLabel" data-keyboard="false" data-backdrop="static">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">					
+					<h4 class="modal-title">Web Crawling</h4>
+				</div>
+				<div class="modal-body">
+					<p>Please wait. This may take several minutes.</p>
+				</div>				
+			</div>
+			<!-- /.modal-content -->
+		</div>
+		<!-- /.modal-dialog -->
+	</div>
+		
+	<!-- modal Help -->
+	<div id="modalTooltip" class="modal fade bs-depth-modal-sm" tabindex="-1" role="dialog"
+		aria-labelledby="mySmallModalLabel">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">					
+					<h4 class="modal-title">JWebCrawler - Help</h4>
+				</div>
+				<div class="modal-body">
+					<h4>Web Crawler</h4>
+					<p>A Web crawler, sometimes called a spider or spiderbot and often shortened to crawler, is an 
+					Internet bot that systematically browses the World Wide Web, typically for the purpose of Web indexing.</p>
+					<h4>URL</h4>
+					<p>What is the URL that you want to start crawling. It can be either http and https.</p>
+					<h4>Depth</h4>
+					<p>For example, assume that you have a seed page "A", which links to "B", which links to "C", which links to "D". So, we have the following link structure:<br>					
+					A -> B -> C -> D<br>
+					Since, "A" is a seed page, it will have a depth of 0. "B" will have depth of 1 and so on.<br>
+					You can set a limit on the depth of pages that the application crawls.<br>
+					For example, if you set this limit to 2, it won't crawl page "D".<br>
+					If you leave it empty, then there is no limit.</p>
+				</div>				
+			</div>
+			<!-- /.modal-content -->
+		</div>
+		<!-- /.modal-dialog -->
+	</div>
+	
+	<div class="container" id="container">
+		<h1 class="text-center" data-i18n="welcome"></h1>
+		<!-- Welcome -->
+		<br>
+		<div id="urlInput" class="input-group-lg center-block helloInput">
+			<p class="lead" data-i18n="insert_url"></p>
+			<input id="url" type="text" class="form-control" value="" />
+		</div>
+		<br>
+		<div id="depthInput" class="input-group-lg center-block helloInput">
+			<p class="lead" data-i18n="insert_depth"></p>
+			<input id="depth" type="text" class="form-control" value=""/>
+		</div>
+		<br>
+		<div id="formSubmit" class="input-group-lg center-block helloInput">
+			<button id="btnSubmit" type="button" class="btn btn-success btn-lg">Submit</button>
+			<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target=".bs-depth-modal-sm">Help</button>
+		</div>
+		<br>
+		<p id="response" class="lead text-center"></p>
+
+		<p id="databaseNames" class="lead text-center"></p>
+	</div>
+	<footer class="footer">
+		<div class="container">
+			<span><a
+				href="https://github.com/matheusmarodin/JWebCrawler"
+				target="_blank">GitHub</a></span>
+		</div>
+	</footer>
+
+</body>
+
+
+</html>
+
+
+<script>
+
+//Submit data when after button click
+$('#btnSubmit')
+		.on(
+				'click',
+				function(e) {
+					var url = $('#url').val();
+					var depth = $('#depth').val();
+
+					if (url.length > 0) {
+						if ((!isNaN(depth) && depth > 0) || !depth){
+							depth = !depth ? -1 : depth;
+						$
+								.ajax({
+									method : "POST",
+									url : "./api/crawler",
+									beforeSend: function( xhr ) {
+										$('.bs-example-modal-sm').modal('show');
+									},
+									contentType : "application/json",
+									data : JSON.stringify({
+										url : url,
+										depth : depth
+									})
+								})
+								.done(
+										function(data) {
+											$('.bs-example-modal-sm').modal('hide');
+											if (data != 'OK'){
+												$('#response')
+												.html('Error. Please try again later.');	
+											}											
+											$('#nameInput').hide();
+											getLinksCrawler();																													
+										});
+						}
+						else{
+							alert('Depth must be a number greater than 0');
+						}
+					} else {
+						alert('Please insert URL before submitting');
+					}
+
+				});
+
+function getLinksCrawler() {
+	$
+			.get("./api/crawler")
+			.done(
+					function(data) {
+						if (data.length > 0) {
+							var content = "<table class='table' class='table-responsive'>";
+							content += "<thead><tr><th>#</th><th>Child Link</th><th>Parent Link</th></tr></thead>";
+							data
+									.forEach(function(element, index) {
+										content += '<tr><td>' + index
+												+ '</td><td>'
+												+ element.childLink
+												+ '</td><td>'
+												+ element.parentLink
+												+ '</td></tr>';
+									});
+
+							content += "</table>";
+
+							$('#databaseNames').html(
+									$.i18n('database_contents') + content);
+						}
+					});
+}
+
+</script>
