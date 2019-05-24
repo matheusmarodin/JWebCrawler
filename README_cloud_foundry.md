@@ -5,11 +5,7 @@ By following the Liberty for Java getting started tutorial, you'll set up a deve
 Throughout these docs, references to the Cloud Foundry CLI are now updated to the IBM Cloud CLI! The IBM Cloud CLI has the same familiar Cloud Foundry commands, but with better integration with IBM Cloud accounts and other services. Learn more about getting started with the IBM Cloud CLI in this tutorial.
 Before you begin
 
-You'll need the following accounts and tools:
-[IBM Cloud account](https://cloud.ibm.com/registration)
-[IBM Cloud CLI](https://cloud.ibm.com/docs/cli/reference/ibmcloud/download_cli.html)
-[Git](https://git-scm.com/downloads)
-[Maven](https://maven.apache.org/download.cgi)
+You'll need the following accounts and tools:[IBM Cloud account](https://cloud.ibm.com/registration),[IBM Cloud CLI](https://cloud.ibm.com/docs/cli/reference/ibmcloud/download_cli.html),[Git](https://git-scm.com/downloads) and [Maven](https://maven.apache.org/download.cgi).
 
 ## Step 1: Clone the sample app
 
