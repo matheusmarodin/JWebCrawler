@@ -2,7 +2,7 @@
 
 This application receives an URL and collects all links within it. Then it can start doing it again recursively with the newly found links. 
 
-**Web application available**:[JWebCrawler](https://jwebcrawler.mybluemix.net/)
+**Web application available**: [JWebCrawler](https://jwebcrawler.mybluemix.net/)
 
 
 ## Before you begin
@@ -19,7 +19,7 @@ You'll need a [IBM Cloud account](https://console.ng.bluemix.net/registration/),
 
 This application was developed using the following projects as starting point:
 
-**Java App**:[get-started-java](https://github.com/IBM-Cloud/get-started-java)
+**Java App**: [get-started-java](https://github.com/IBM-Cloud/get-started-java)
 
-**Crawler**:[crawler4j](https://github.com/yasserg/crawler4j)
+**Crawler**: [crawler4j](https://github.com/yasserg/crawler4j)
 
