@@ -11,9 +11,9 @@ You'll need a [IBM Cloud account](https://console.ng.bluemix.net/registration/),
 
 ## Instructions
 
-**IBM Cloud Cloud Foundry**: [README_cloud_foundry.md](README_cloud_foundry.md)
+**How to clone and deploy**: [README_cloud_foundry.md](README_cloud_foundry.md)
 
-**IBM Cloud Kubernetes Service**: [README_kubernetes.md](README_kubernetes.md)
+**How to setup a container**: [README_kubernetes.md](README_kubernetes.md)
 
 ## References
 
