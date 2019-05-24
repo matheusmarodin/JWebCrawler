@@ -1,8 +1,8 @@
 # JWebCrawler
 
-This application receives an URL and collects all links within it. Then it can start doing it again recursively. 
+This application receives an URL and collects all links within it. Then it can start doing it again recursively with the newly found links. 
 
-**Web application available:**:[JWebCrawler](https://jwebcrawler.mybluemix.net/)
+**Web application available**:[JWebCrawler](https://jwebcrawler.mybluemix.net/)
 
 
 ## Before you begin
